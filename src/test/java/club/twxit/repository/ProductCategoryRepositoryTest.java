@@ -1,5 +1,8 @@
 package club.twxit.repository;
 
+import javax.transaction.Transactional;
+
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +22,28 @@ public class ProductCategoryRepositoryTest {
     public void findOneTest(){
     	ProductCategory pc = pr.findOne(1);
     	System.out.println(pc.toString());
+    }
+    
+    @Test
+    @Transactional
+    public void saveTest(){
+    	ProductCategory pc = new ProductCategory();
+    	pc.setCategoryName("Ð¡Âó");
+    	pc.setCategoryType(4);
+    	ProductCategory result = pr.save(pc);
+    	Assert.assertNotNull(result);
+    }
+    
+    @Test
+    public void updateTest(){
+    	ProductCategory pc = pr.findOne(1);
+    	pc.setCategoryName("Ð¡µ¾");
+    	ProductCategory result = pr.save(pc);
+        Assert.assertEquals(result, pc);
+    }
+    
+    @Test
+    public void findbyCategoryTypeInTest(){
+    	
     }
 }
