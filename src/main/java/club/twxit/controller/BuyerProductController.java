@@ -2,12 +2,15 @@ package club.twxit.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import club.twxit.dataobject.ProductCategory;
 import club.twxit.dataobject.ProductInfo;
 import club.twxit.service.CategoryService;
 import club.twxit.service.ProductService;
@@ -25,15 +28,35 @@ public class BuyerProductController {
 	@RequestMapping("/list")
    public ResultVO list(){
 		List<ProductInfo> productInfoList = productService.findUpAll();
-		List<Integer> cateoryList = new ArrayList<>();
+		List<Integer> cateoryTypeList = new ArrayList<>();
 		for(ProductInfo info : productInfoList){
-			cateoryList.add(info.getCategoryType());
+			cateoryTypeList.add(info.getCategoryType());
+		}
+		List<ProductCategory> productCateoryList = categoryService.findByCategoryTypeIn(cateoryTypeList);
+		
+		
+		List<ProductVO> productVOList = new ArrayList<>();
+		for(ProductCategory productCategory : productCateoryList){
+			ProductVO productVO = new ProductVO();
+			productVO.setCategoryName(productCategory.getCategoryName());
+			productVO.setCategoryType(productCategory.getCategoryType());
+			
+			
+			List<ProductInfoVO> productInfoVOList = new ArrayList<>();
+			for (ProductInfo productInfo : productInfoList) {
+				if(productInfo.getCategoryType().equals(productCategory.getCategoryType())){
+					ProductInfoVO productInfoVO = new ProductInfoVO();
+					BeanUtils.copyProperties(productInfo, productInfoVO);
+				}
+			}
+			productVO.setProductInfoVOList(productInfoVOList);
+			productVOList.add(productVO);
+			
 		}
 		ResultVO resultVO = new ResultVO<>();
-		ProductVO productVO = new ProductVO();
-		ProductInfoVO productInfoVO = new ProductInfoVO();
-	    productVO.setProductInfoVOList(Arrays.asList(productInfoVO));
-		resultVO.setData(Arrays.asList(productVO));
+		
+		resultVO.setData(productVOList);
+	   
 		resultVO.setCode(0);
 		resultVO.setMessage("SUCCESS");
 	return resultVO;
