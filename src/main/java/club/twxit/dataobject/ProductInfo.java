@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import javax.persistence.Id;
 
 /**
- * ÉÌÆ·
+ * ï¿½ï¿½Æ·
  * @author Lenovo
  *
  */
@@ -18,7 +18,7 @@ public class ProductInfo {
   private String productDescription;
   private String productIcon;
   private Integer productStatus;
-  private String categoryType;
+  private Integer categoryType;
 public String getProductId() {
 	return productId;
 }
@@ -61,10 +61,10 @@ public Integer getProductStatus() {
 public void setProductStatus(Integer productStatus) {
 	this.productStatus = productStatus;
 }
-public String getCategoryType() {
+public Integer getCategoryType() {
 	return categoryType;
 }
-public void setCategoryType(String categoryType) {
+public void setCategoryType(Integer categoryType) {
 	this.categoryType = categoryType;
 }
   

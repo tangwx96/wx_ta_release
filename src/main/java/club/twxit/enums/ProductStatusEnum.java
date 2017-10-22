@@ -1,24 +1,18 @@
 package club.twxit.enums;
 
+import lombok.Getter;
+
+/**
+ * 商品状态
+ * @author Administrator
+ *
+ */
 public enum ProductStatusEnum {
 	
-	UP(1,"");
-   ProductStatusEnum(Integer code, String message) {
-		this.code = code;
-		this.message = message;
-	}
-public Integer getCode() {
-	return code;
-}
-public void setCode(Integer code) {
-	this.code = code;
-}
-public Integer getString() {
-	return String;
-}
-public void setString(Integer string) {
-	String = string;
-}
+UP(0,"在架"),
+DOWN(1,"下架");
+private Integer code;
+private String message;
 public Integer getCode() {
 	return code;
 }
@@ -31,7 +25,12 @@ public String getMessage() {
 public void setMessage(String message) {
 	this.message = message;
 }
-private Integer code;
-  private String message;
+private ProductStatusEnum(Integer code, String message) {
+	this.code = code;
+	this.message = message;
+}
+private ProductStatusEnum() {
+}
+
   
 }
