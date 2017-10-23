@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +15,7 @@ import club.twxit.dataobject.ProductCategory;
 import club.twxit.dataobject.ProductInfo;
 import club.twxit.service.CategoryService;
 import club.twxit.service.ProductService;
+import club.twxit.utils.ResultVOUtil;
 import club.twxit.vo.ProductInfoVO;
 import club.twxit.vo.ProductVO;
 import club.twxit.vo.ResultVO;
@@ -25,7 +27,7 @@ public class BuyerProductController {
 	private ProductService productService;
 	@Autowired
 	private CategoryService categoryService;
-	@RequestMapping("/list")
+	@GetMapping("/list")
    public ResultVO list(){
 		List<ProductInfo> productInfoList = productService.findUpAll();
 		List<Integer> cateoryTypeList = new ArrayList<>();
@@ -53,13 +55,10 @@ public class BuyerProductController {
 			productVOList.add(productVO);
 			
 		}
-		ResultVO resultVO = new ResultVO<>();
 		
-		resultVO.setData(productVOList);
-	   
-		resultVO.setCode(0);
-		resultVO.setMessage("SUCCESS");
-	return resultVO;
+	
+		return ResultVOUtil.success(productVOList);
+
 	   
    }
 } 

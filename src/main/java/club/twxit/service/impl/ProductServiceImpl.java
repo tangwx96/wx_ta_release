@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import club.twxit.dataobject.ProductInfo;
 import club.twxit.enums.ProductStatusEnum;
 import club.twxit.repository.ProductInfoRepository;
 import club.twxit.service.ProductService;
-
+@Service
 public class ProductServiceImpl implements ProductService{
    private ProductInfoRepository  pi;
 

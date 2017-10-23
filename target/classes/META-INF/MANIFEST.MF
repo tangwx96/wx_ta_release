@@ -3,8 +3,8 @@ Implementation-Vendor: Pivotal Software, Inc.
 Implementation-Title: takeAway
 Implementation-Version: 0.0.1-SNAPSHOT
 Implementation-Vendor-Id: com.twxit
-Build-Jdk: 1.7.0_45
-Built-By: Administrator
+Build-Jdk: 1.7.0_80
+Built-By: Lenovo
 Created-By: Maven Integration for Eclipse
 Implementation-URL: http://projects.spring.io/spring-boot/takeaway/
 

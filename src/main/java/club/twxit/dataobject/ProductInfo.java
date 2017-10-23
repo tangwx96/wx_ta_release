@@ -5,6 +5,10 @@ import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import club.twxit.enums.ProductStatusEnum;
+
+
+
 /**
  * ��Ʒ
  * @author Lenovo
@@ -19,7 +23,7 @@ public class ProductInfo {
   private Integer productStock;
   private String productDescription;
   private String productIcon;
-  private Integer productStatus;
+  private Integer productStatus = ProductStatusEnum.UP.getCode();;
   private Integer categoryType;
 public String getProductId() {
 	return productId;

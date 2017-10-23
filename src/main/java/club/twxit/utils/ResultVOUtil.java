@@ -10,4 +10,10 @@ public class ResultVOUtil {
 	  resultVO.setMessage("SUCCESS");
 	  return resultVO;
   }
+  public static ResultVO error(Integer code, String msg) {
+      ResultVO resultVO = new ResultVO();
+      resultVO.setCode(code);
+      resultVO.setMessage(msg);
+      return resultVO;
+  }
 }
