@@ -2,7 +2,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
-    passwprd: root
+    password: root
     url: jdbc:mysql://114.67.158.67:3306/sell?characterEncoding=utf-8&useSSL=false
   jpa:
     show-sql: true

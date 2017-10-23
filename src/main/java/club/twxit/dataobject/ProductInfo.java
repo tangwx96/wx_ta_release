@@ -2,6 +2,7 @@ package club.twxit.dataobject;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
@@ -9,6 +10,7 @@ import javax.persistence.Id;
  * @author Lenovo
  *
  */
+@Entity
 public class ProductInfo {
   @Id
   private String productId;
