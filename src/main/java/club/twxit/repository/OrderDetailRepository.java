@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import club.twxit.dataobject.OrderDetail;
 
 public interface OrderDetailRepository extends JpaRepository<OrderDetail, String>{
-	List<OrderDetail> fingByOrderId(String openId,Pageable pageable);
+    List<OrderDetail> findByOrderId(String orderId);
 
 }

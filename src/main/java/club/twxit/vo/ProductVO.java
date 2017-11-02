@@ -22,8 +22,10 @@ public class ProductVO {
 	public void setCategoryType(Integer categoryType) {
 		this.categoryType = categoryType;
 	}
+	
 	@JsonProperty("foods")
 	private List<ProductInfoVO> productInfoVOList;
+	
 	public List<ProductInfoVO> getProductInfoVOList() {
 		return productInfoVOList;
 	}

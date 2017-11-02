@@ -23,10 +23,12 @@ import club.twxit.vo.ResultVO;
 @RestController
 @RequestMapping("/buyer/product")
 public class BuyerProductController {
+	
 	@Autowired
 	private ProductService productService;
 	@Autowired
 	private CategoryService categoryService;
+	
 	@GetMapping("/list")
    public ResultVO list(){
 		List<ProductInfo> productInfoList = productService.findUpAll();
@@ -49,6 +51,7 @@ public class BuyerProductController {
 				if(productInfo.getCategoryType().equals(productCategory.getCategoryType())){
 					ProductInfoVO productInfoVO = new ProductInfoVO();
 					BeanUtils.copyProperties(productInfo, productInfoVO);
+					  productInfoVOList.add(productInfoVO);
 				}
 			}
 			productVO.setProductInfoVOList(productInfoVOList);
@@ -61,4 +64,9 @@ public class BuyerProductController {
 
 	   
    }
+	@RequestMapping("/error")
+	public ResultVO error(){
+		return ResultVOUtil.success(new Object());
+	}
+	
 } 

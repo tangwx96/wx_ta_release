@@ -3,13 +3,14 @@ package club.twxit.dataobject;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import club.twxit.enums.OrderStatusEnum;
 import club.twxit.enums.PayStatusEnum;
 
 
-
+@Entity
 public class OrderMaster {
 	   @Id
 	    private String orderId;

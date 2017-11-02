@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import club.twxit.dataobject.OrderMaster;
 
 public interface OrderMasterRepository extends JpaRepository<OrderMaster, Integer>{
-	 Page<OrderMaster> fingByBuyerOpenid(String buyerOpenid,Pageable pageable);
+	 Page<OrderMaster> findByBuyerOpenid(String buyerOpenid, Pageable pageable);
 
 }
