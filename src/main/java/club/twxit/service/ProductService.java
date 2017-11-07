@@ -20,5 +20,5 @@ public interface ProductService {
     
     ProductInfo save(ProductInfo productInfo);
     
-    //加库存
+    
 }
