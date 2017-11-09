@@ -9,25 +9,6 @@ import org.springframework.data.domain.Pageable;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import club.twxit.dataobject.OrderDetail;
 import club.twxit.dataobject.ProductInfo;
 import club.twxit.dto.OrderDTO;
@@ -38,6 +19,8 @@ import club.twxit.repository.OrderMasterRepository;
 import club.twxit.service.OrderService;
 import club.twxit.service.ProductService;
 import club.twxit.utils.KeyUtil;
+import org.springframework.transaction.annotation.Transactional;
+
 
 public class OrderServiceImpl implements OrderService {
 	@Autowired
@@ -50,6 +33,7 @@ public class OrderServiceImpl implements OrderService {
 	    private OrderMasterRepository orderMasterRepository;
 
 	@Override
+	@Transactional
 	public OrderDTO create(OrderDTO orderDTO) {
 		// TODO Auto-generated method stub
 		String orderId = KeyUtil.genUniqueKey();
@@ -59,7 +43,13 @@ public class OrderServiceImpl implements OrderService {
 			   if(productInfo!=null){
 				   throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
 			   }
-			   
+			   //计算订单总价
+			   orderAmount = productInfo.getProductPrice()
+					   .multiply(new BigDecimal(orderDetail.getProductQuantity()))
+					   .add(orderAmount);
+			   orderDetail.setDetailId(KeyUtil.genUniqueKey());
+			   orderDetail.setOrderId(orderId);
+
 		   }
 		return null;
 	}
