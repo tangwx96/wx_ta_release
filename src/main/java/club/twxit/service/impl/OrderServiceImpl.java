@@ -3,6 +3,8 @@ package club.twxit.service.impl;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+import club.twxit.dataobject.OrderMaster;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -49,8 +51,18 @@ public class OrderServiceImpl implements OrderService {
 					   .add(orderAmount);
 			   orderDetail.setDetailId(KeyUtil.genUniqueKey());
 			   orderDetail.setOrderId(orderId);
+			   BeanUtils.copyProperties(productInfo,orderDetail);
+			   orderDetailRepository.save(orderDetail);
 
 		   }
+
+		   //写入订单数据库
+		OrderMaster orderMaster = new OrderMaster();
+orderMaster.setOrderId(orderId);
+orderMaster.setOrderAmount(orderAmount);
+BeanUtils.copyProperties(orderDTO,orderMaster);
+orderMasterRepository.save(orderMaster);
+
 		return null;
 	}
 

@@ -2,6 +2,7 @@ package club.twxit.service;
 
 import java.util.List;
 
+import club.twxit.dto.CartDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -20,5 +21,7 @@ public interface ProductService {
     
     ProductInfo save(ProductInfo productInfo);
     
-    
+    void increaseStock(List<CartDTO> cartDTOList);
+
+    void dereaseStock(List<CartDTO> cartDTOList);
 }
